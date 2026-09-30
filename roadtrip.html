@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Projects</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#1e293b',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Ensuring map has a minimum height and handles z-index nicely with fixed headers */
+        #map {
+            height: 500px;
+            width: 100%;
+            z-index: 10;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased">
+
+    <!-- Navigation Bar -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <a href="#" class="text-xl font-bold text-gray-900 tracking-tight">John<span class="text-primary">Doe</span></a>
+                </div>
+                <div class="flex items-center space-x-8">
+                    <a href="#hero" class="text-gray-600 hover:text-primary transition">Home</a>
+                    <a href="#projects" class="text-gray-600 hover:text-primary transition">Projects</a>
+                    <a href="#contact" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition shadow-sm">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
+                Building digital experiences <br class="hidden md:block" /> & exploring the world.
+            </h1>
+            <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10">
+                I'm a developer passionate about clean code, modern web technologies, and tracking my adventures across North America.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#projects" class="px-6 py-3 bg-secondary text-white rounded-lg hover:bg-gray-800 transition shadow-lg font-medium">View My Work</a>
+                <a href="#contact" class="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition shadow-sm font-medium">Get in Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-secondary mb-4">Featured Projects</h2>
+                <div class="w-16 h-1 bg-primary mx-auto rounded-full"></div>
+            </div>
+
+            <div class="space-y-24">
+                
+                <!-- Project 1: Highway Tracker -->
+                <div class="flex flex-col lg:flex-row gap-12 items-start">
+                    <div class="w-full lg:w-1/3 space-y-6">
+                        <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold tracking-wide">Data Visualization</div>
+                        <h3 class="text-3xl font-bold text-gray-900">Highway Tracker</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            An interactive map documenting all the major highways I've driven across North America. Built using Leaflet.js and OpenStreetMap data, this project visualizes road trips and commutes, highlighting routes like the I-95 corridor and the West Coast's I-5.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">HTML5</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">Tailwind CSS</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">Leaflet.js</span>
+                        </div>
+                        <a href="#" class="inline-flex items-center text-primary font-medium hover:text-blue-700 transition pt-4">
+                            Read the case study 
+                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                        </a>
+                    </div>
+                    <div class="w-full lg:w-2/3">
+                        <div class="bg-gray-100 p-2 rounded-2xl shadow-lg border border-gray-200">
+                            <!-- Leaflet Map Container -->
+                            <div id="map" class="rounded-xl overflow-hidden shadow-inner"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Placeholder -->
+                <div class="flex flex-col lg:flex-row-reverse gap-12 items-center pt-12 border-t border-gray-100">
+                    <div class="w-full lg:w-1/3 space-y-6">
+                        <div class="inline-block px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-semibold tracking-wide">Web Application</div>
+                        <h3 class="text-3xl font-bold text-gray-900">Project Alpha (Coming Soon)</h3>
+                        <p class="text-gray-600 leading-relaxed">
+                            A placeholder for my next big project. This space will showcase a full-stack web application designed to solve real-world problems. Stay tuned for updates as development progresses.
+                        </p>
+                        <div class="flex flex-wrap gap-2 pt-2">
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">React</span>
+                            <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">Node.js</span>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-2/3">
+                        <div class="aspect-video bg-gray-100 rounded-2xl shadow-md border border-gray-200 flex items-center justify-center">
+                            <div class="text-center">
+                                <svg class="w-16 h-16 text-gray-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
+                                <p class="text-gray-400 font-medium">Under Construction</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="bg-secondary py-12 text-center text-gray-400">
+        <div class="max-w-7xl mx-auto px-4">
+            <h4 class="text-white text-xl font-semibold mb-6">Let's Connect</h4>
+            <p class="mb-8 max-w-md mx-auto">Interested in working together or just want to chat about code and road trips? Drop me a line.</p>
+            <a href="mailto:hello@example.com" class="inline-block px-8 py-3 bg-primary text-white rounded-lg hover:bg-blue-600 transition shadow-lg font-medium mb-12">
+                Say Hello
+            </a>
+            <div class="pt-8 border-t border-gray-700 text-sm">
+                <p>&copy; 2026 John Doe. Built with HTML, Tailwind, and Leaflet.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the map and set view to center of North America
+            const map = L.map('map').setView([39.8283, -98.5795], 4);
+
+            // Add Esri World Street Map basemap tiles
+            L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 19,
+                attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+            }).addTo(map);
+
+            // =====================================================================
+            // HOW TO ADD A NEW HIGHWAY / TRIP:
+            // It's incredibly easy! Just add a new block to the `myTrips` array below.
+            // Provide a name, a color, and the [Latitude, Longitude] for start/end.
+            // The map will automatically calculate and draw the real highway route.
+            // =====================================================================
+            const myTrips = [
+                {
+                    name: "I-95: Boston to Washington D.C.",
+                    start: [42.3601, -71.0589], // Boston, MA
+                    end: [38.9072, -77.0369],   // Washington D.C.
+                    color: '#3b82f6' // Tailwind Primary Blue
+                },
+                {
+                    name: "I-5: Seattle to Sacramento",
+                    start: [47.6062, -122.3321], // Seattle, WA
+                    end: [38.5816, -121.4944],   // Sacramento, CA
+                    color: '#ef4444' // Tailwind Red
+                },
+                {
+                    name: "I-90: Seattle to Chicago",
+                    start: [47.6062, -122.3321], // Seattle, WA
+                    end: [41.8781, -87.6298],    // Chicago, IL
+                    color: '#10b981' // Tailwind Emerald
+                }
+            ];
+
+            // Loop through each trip and fetch the actual driving route
+            myTrips.forEach(trip => {
+                // OSRM API expects coordinates in Longitude,Latitude format
+                const startLngLat = `${trip.start[1]},${trip.start[0]}`;
+                const endLngLat = `${trip.end[1]},${trip.end[0]}`;
+                
+                // Fetch the route geometry in GeoJSON format (overview=full gives the exact curved path)
+                const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${startLngLat};${endLngLat}?geometries=geojson&overview=full`;
+
+                fetch(osrmUrl)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.routes && data.routes.length > 0) {
+                            // Extract the GeoJSON geometry of the route
+                            const routeGeometry = data.routes[0].geometry;
+
+                            // Draw it on the map using Leaflet's GeoJSON layer
+                            L.geoJSON(routeGeometry, {
+                                style: {
+                                    color: trip.color,
+                                    weight: 5,
+                                    opacity: 0.8,
+                                    lineJoin: 'round'
+                                }
+                            }).bindPopup(`<b>${trip.name}</b><br>Distance: ${(data.routes[0].distance / 1609.34).toFixed(1)} miles`).addTo(map);
+                        }
+                    })
+                    .catch(error => console.error("Error fetching route for " + trip.name + ":", error));
+            });
+        });
+    </script>
+</body>
+</html>
