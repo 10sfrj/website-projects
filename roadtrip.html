@@ -90,7 +90,12 @@
                 <div class="flex flex-col lg:flex-row gap-12 items-start">
                     <div class="w-full lg:w-1/3 space-y-6">
                         <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-semibold tracking-wide">Data Visualization</div>
-                        <h3 class="text-3xl font-bold text-gray-900">Highway Tracker</h3>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-3xl font-bold text-gray-900">Highway Tracker</h3>
+                            <div class="bg-blue-500 text-white px-4 py-2 rounded-lg font-bold shadow-md">
+                                Total Distance: <span id="total-miles">0</span> miles
+                            </div>
+                        </div>
                         <p class="text-gray-600 leading-relaxed">
                             An interactive map documenting all the major highways I've driven across North America. Built using Leaflet.js and OpenStreetMap data, this project visualizes road trips and commutes, highlighting routes like the I-95 corridor and the West Coast's I-5.
                         </p>
@@ -175,42 +180,208 @@
             // =====================================================================
             const myTrips = [
                 {
-                    name: "I-95: Boston to Washington D.C.",
-                    start: [42.3601, -71.0589], // Boston, MA
-                    end: [38.9072, -77.0369],   // Washington D.C.
-                    color: '#3b82f6' // Tailwind Primary Blue
+                    name: "I-5: Sacramento to USA-Canada Border",
+                    start: [38.5816, -121.4944],
+                    end: [49.0021, -122.756],
+                    color: '#ef4444'
                 },
                 {
-                    name: "I-5: Seattle to Sacramento",
-                    start: [47.6062, -122.3321], // Seattle, WA
-                    end: [38.5816, -121.4944],   // Sacramento, CA
-                    color: '#ef4444' // Tailwind Red
+                    name: "I-505: Vacaville to Dunnigan",
+                    start: [38.3686, -121.9586],
+                    end: [38.855, -121.9469],
+                    color: '#750606'
                 },
                 {
-                    name: "I-90: Seattle to Chicago",
-                    start: [47.6062, -122.3321], // Seattle, WA
-                    end: [41.8781, -87.6298],    // Chicago, IL
-                    color: '#10b981' // Tailwind Emerald
+                    name: "I-80: San Francisco to Wells",
+                    start: [37.7753, -122.4194],
+                    end: [41.1008, -114.9621],
+                    color: '#b37e34'
+                },
+                {
+                    name: "BC-99: USA-Canada Border to Vancouver",
+                    start: [49.0021, -122.756],
+                    end: [49.2819, -123.1171],
+                    color: '#75b358'
+                },
+                {
+                    name: "BC-99: Vancouver to West Vancouver",
+                    start: [49.2819, -123.1171],
+                    end: [49.3516, -123.2472],
+                    color: '#486e25'
+                },
+                {
+                    name: "Trans-Canada Highway (BC-1): Vancouver to Hope",
+                    start: [49.2819, -123.1171],
+                    end: [49.3708, -121.4483],
+                    color: '#15a5d1'
+                },
+                {
+                    name: "BC-5: Hope to Tête Jaune Cache",
+                    start: [49.3708, -121.4483],
+                    end: [52.9756, -119.4236],
+                    color: '#579934'
+                },
+                {
+                    name: "Trans-Canada Highway (BC-16): Tête Jaune Cache to Jasper",
+                    start: [52.9756, -119.4236],
+                    end: [52.8732, -118.0822],
+                    color: '#d6983a'
+                },
+                {
+                    name: "Trans-Canada Highway (BC-1): Kamloops to Calgary",
+                    start: [50.6663, -120.4429],
+                    end: [51.0048, -114.0715],
+                    color: '#15a5d1'
+                },
+                {
+                    name: "BC-93: USA-Canada Border to Jasper",
+                    start: [49, -115.0559],
+                    end: [52.8732, -118.0822],
+                    color: '#218f7b'
+                },
+                {
+                    name: "BC-2/BC-3/BC-6: Calgary to Waterton Lakes",
+                    start: [51.0048, -114.0715],
+                    waypoints: [
+                        [49.5459, -113.8184],
+                        [49.582, -113.8635],
+                        [49.489, -113.9366]
+                    ],
+                    end: [49.0501, -113.9084],
+                    color: '#ef4444'
+                },
+                {
+                    name: "BC-6/BC-3/BC-3B/BC-22A: Waterton Lakes to USA-Canada Border",
+                    start: [49.0501, -113.9084],
+                    end: [49, -117.6253],
+                    color: '#8e44bd'
+                },
+                {
+                    name: "Northport-Waneta Rd/WA-25/US-2: USA-Canada Border to Leavenworth",
+                    start: [49, -117.6253],
+                    end: [47.5961, -120.6615],
+                    color: '#d6983a'
+                },
+                {
+                    name: "US-2/I-90: Leavenworth to Tacoma",
+                    start: [47.5961, -120.6615],
+                    end: [47.2817, -122.3097],
+                    color: '#a8a82f'
+                },
+                {
+                    name: "US-93: Wells to Twin Falls",
+                    start: [41.1007, -114.9621],
+                    end: [42.6366, -114.4312],
+                    color: '#8e44bd'
+                },
+                {
+                    name: "I-84/I-86/I-15: Twin Falls to Idaho Falls",
+                    start: [42.6366, -114.4312],
+                    end: [43.5014, -112.0544],
+                    color: '#172aa6'
+                },
+                {
+                    name: "US-20/US-191: Idaho Falls to Big Sky",
+                    start: [43.5014, -112.0544],
+                    end: [45.2612, -111.3085],
+                    color: '#218f7b'
+                },
+                {
+                    name: "US-191/US-12/MT-83: Big Sky to Whitefish",
+                    start: [45.2612, -111.3085],
+                    waypoints: [
+                        [46.5981, -112.0412],
+                        [46.8151, -112.8471],
+                        [47.5278, -113.7104]
+                    ],
+                    end: [48.4106, -114.3353],
+                    color: '#579934'
+                },
+                {
+                    name: "US-93: Whitefish to USA-Canada Border",
+                    start: [48.4106, -114.3353],
+                    end: [49, -115.0559],
+                    color: '#a8a82f'
+                },
+                {
+                    name: "US-101/CA-128/CA-1: San Francisco to Mendocino",
+                    start: [37.7753, -122.4194],
+                    end: [39.3076, -123.7989],
+                    color: '#d6983a'
+                },
+                {
+                    name: "US-101/CA-154: San Francisco to Los Angeles",
+                    start: [37.7753, -122.4194],
+                    waypoints: [
+                        [35.1711, -120.6938]
+                    ],
+                    end: [34.1559, -118.4689],
+                    color: '#172aa6'
+                },
+                {
+                    name: "CA-150: Carpenteria to Ojai",
+                    start: [34.3849, -119.4879],
+                    end: [34.448, -119.2429],
+                    color: '#a8a82f'
+                },
+                {
+                    name: "I-405/I-5: Los Angeles to San Diego",
+                    start: [34.1559, -118.4689],
+                    end: [32.7157, -117.1611],
+                    color: '#579934'
+                },
+                {
+                    name: "I-80/I-580/CA-152/CA-99: San Francisco to Clovis",
+                    start: [37.7753, -122.4194],
+                    end: [36.8253, -119.7027],
+                    color: '#8e44bd'
+                },
+                {
+                    name: "CA-134/I-210/CA-210: Los Angeles to Redlands",
+                    start: [34.1629, -118.4721],
+                    end: [34.0556, -117.1826],
+                    color: '#15a5d1'
                 }
+
             ];
+
+            let totalMilesDriven = 0;
 
             // Loop through each trip and fetch the actual driving route
             myTrips.forEach(trip => {
-                // OSRM API expects coordinates in Longitude,Latitude format
-                const startLngLat = `${trip.start[1]},${trip.start[0]}`;
-                const endLngLat = `${trip.end[1]},${trip.end[0]}`;
+                // 1. Add the start coordinate (Longitude,Latitude)
+                let coordString = `${trip.start[1]},${trip.start[0]}`;
                 
-                // Fetch the route geometry in GeoJSON format (overview=full gives the exact curved path)
-                const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${startLngLat};${endLngLat}?geometries=geojson&overview=full`;
+                // 2. If the trip has midpoints (waypoints), add them to the string
+                if (trip.waypoints) {
+                    trip.waypoints.forEach(point => {
+                        coordString += `;${point[1]},${point[0]}`;
+                    });
+                }
+                
+                // 3. Add the end coordinate
+                coordString += `;${trip.end[1]},${trip.end[0]}`;
+                
+                // Fetch the route geometry in GeoJSON format
+                const osrmUrl = `https://router.project-osrm.org/route/v1/driving/${coordString}?geometries=geojson&overview=full`;
 
                 fetch(osrmUrl)
                     .then(response => response.json())
                     .then(data => {
                         if (data.routes && data.routes.length > 0) {
+                            // Calculate the distance of this specific trip in miles
+                            const tripDistance = data.routes[0].distance / 1609.34;
+                            
+                            // 2. Add it to our running total
+                            totalMilesDriven += tripDistance;
+                            
+                            // 3. Update the HTML text with the new total (rounded to 1 decimal)
+                            document.getElementById('total-miles').innerText = totalMilesDriven.toFixed(1);
+
                             // Extract the GeoJSON geometry of the route
                             const routeGeometry = data.routes[0].geometry;
 
-                            // Draw it on the map using Leaflet's GeoJSON layer
+                            // Draw it on the map
                             L.geoJSON(routeGeometry, {
                                 style: {
                                     color: trip.color,
@@ -218,10 +389,68 @@
                                     opacity: 0.8,
                                     lineJoin: 'round'
                                 }
-                            }).bindPopup(`<b>${trip.name}</b><br>Distance: ${(data.routes[0].distance / 1609.34).toFixed(1)} miles`).addTo(map);
+                            }).bindPopup(`<b>${trip.name}</b><br>Distance: ${tripDistance.toFixed(1)} miles`).addTo(map);
                         }
                     })
                     .catch(error => console.error("Error fetching route for " + trip.name + ":", error));
+            });
+
+            const myStops = [];
+
+            const hotelIcon = L.icon({
+                iconUrl: 'hotel_icon.jpeg', // The name of your image file
+                iconSize: [24, 24],    // Width and height in pixels
+                iconAnchor: [16, 32],  // The point of the icon that anchors to the map coordinates
+                popupAnchor: [0, -32]  // Where the popup bubble should open
+            });
+
+            // 2. Place the marker on the map using coordinates [Latitude, Longitude]
+            const vancouverHotel = L.marker([49.2858, -123.1238], {icon: hotelIcon})
+                .addTo(map)
+                .bindPopup("Hyatt Vancouver Downtown Alberni");
+
+            myStops.push(vancouverHotel)
+
+
+            const foodIcon = L.icon({
+                iconUrl: 'food_icon.jpg', // The name of your image file
+                iconSize: [24, 24],    // Width and height in pixels
+                iconAnchor: [16, 32],  // The point of the icon that anchors to the map coordinates
+                popupAnchor: [0, -32]  // Where the popup bubble should open
+            });
+
+            // 2. Place the marker on the map using coordinates [Latitude, Longitude]
+            const tinTin = L.marker([49.1866, -123.1355], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Tin Tin Seafood Harbour");
+
+            myStops.push(tinTin)
+
+            // 5. Listen for the user zooming the map
+            map.on('zoomend', function() {
+                // Get the current zoom level (usually a number between 3 and 18)
+                const currentZoom = map.getZoom();
+                
+                // Calculate a new size. This formula makes it smaller when zoomed out, larger when zoomed in.
+                // Math.max ensures the icon never gets smaller than 12 pixels so it doesn't disappear.
+                const newSize = Math.max(15, currentZoom * 2); 
+                
+                // Loop through every marker in your list and apply the new size
+                myStops.forEach(marker => {
+                    // Get the current image the marker is using
+                    const currentIconUrl = marker.getIcon().options.iconUrl;
+                    
+                    // Create a newly sized version of that icon
+                    const scaledIcon = L.icon({
+                        iconUrl: currentIconUrl,
+                        iconSize: [newSize, newSize],
+                        iconAnchor: [newSize / 2, newSize],     // Keeps the bottom point anchored properly
+                        popupAnchor: [0, -newSize]              // Keeps the popup above the pin
+                    });
+                    
+                    // Apply the new icon to the marker
+                    marker.setIcon(scaledIcon);
+                });
             });
         });
     </script>
