@@ -54,7 +54,6 @@
                 <div class="flex items-center space-x-8">
                     <a href="#hero" class="text-gray-600 hover:text-primary transition">Home</a>
                     <a href="#projects" class="text-gray-600 hover:text-primary transition">Projects</a>
-                    <a href="#contact" class="px-4 py-2 bg-primary text-white rounded-lg hover:bg-blue-600 transition shadow-sm">Contact</a>
                 </div>
             </div>
         </div>
@@ -64,14 +63,13 @@
     <section id="hero" class="pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-secondary mb-6 leading-tight">
-                Building digital experiences <br class="hidden md:block" /> & exploring the world.
+                Welcome!
             </h1>
             <p class="text-lg md:text-xl text-gray-500 max-w-2xl mx-auto mb-10">
-                I'm a developer passionate about clean code, modern web technologies, and tracking my adventures across North America.
+                Below is a compliation of some projects I've started. 
             </p>
             <div class="flex justify-center gap-4">
                 <a href="#projects" class="px-6 py-3 bg-secondary text-white rounded-lg hover:bg-gray-800 transition shadow-lg font-medium">View My Work</a>
-                <a href="#contact" class="px-6 py-3 bg-white text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition shadow-sm font-medium">Get in Touch</a>
             </div>
         </div>
     </section>
@@ -97,17 +95,13 @@
                             </div>
                         </div>
                         <p class="text-gray-600 leading-relaxed">
-                            An interactive map documenting all the major highways I've driven across North America. Built using Leaflet.js and OpenStreetMap data, this project visualizes road trips and commutes, highlighting routes like the I-95 corridor and the West Coast's I-5.
+                            An interactive map documenting all the major highways I've driven across North America, built using Leaflet.js and OpenStreetMap data.
                         </p>
                         <div class="flex flex-wrap gap-2 pt-2">
                             <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">HTML5</span>
                             <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">Tailwind CSS</span>
                             <span class="px-3 py-1 bg-gray-100 text-gray-600 rounded-md text-sm">Leaflet.js</span>
                         </div>
-                        <a href="#" class="inline-flex items-center text-primary font-medium hover:text-blue-700 transition pt-4">
-                            Read the case study 
-                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                        </a>
                     </div>
                     <div class="w-full lg:w-2/3">
                         <div class="bg-gray-100 p-2 rounded-2xl shadow-lg border border-gray-200">
@@ -146,13 +140,6 @@
 
     <!-- Footer -->
     <footer id="contact" class="bg-secondary py-12 text-center text-gray-400">
-        <div class="max-w-7xl mx-auto px-4">
-            <h4 class="text-white text-xl font-semibold mb-6">Let's Connect</h4>
-            <p class="mb-8 max-w-md mx-auto">Interested in working together or just want to chat about code and road trips? Drop me a line.</p>
-            <a href="mailto:hello@example.com" class="inline-block px-8 py-3 bg-primary text-white rounded-lg hover:bg-blue-600 transition shadow-lg font-medium mb-12">
-                Say Hello
-            </a>
-            <div class="pt-8 border-t border-gray-700 text-sm">
                 <p>&copy; 2026 John Doe. Built with HTML, Tailwind, and Leaflet.</p>
             </div>
         </div>
@@ -230,7 +217,7 @@
                 {
                     name: "Trans-Canada Highway (BC-1): Kamloops to Calgary",
                     start: [50.6663, -120.4429],
-                    end: [51.0048, -114.0715],
+                    end: [51.0448, -114.0715],
                     color: '#15a5d1'
                 },
                 {
@@ -241,7 +228,7 @@
                 },
                 {
                     name: "BC-2/BC-3/BC-6: Calgary to Waterton Lakes",
-                    start: [51.0048, -114.0715],
+                    start: [51.0448, -114.0715],
                     waypoints: [
                         [49.5459, -113.8184],
                         [49.582, -113.8635],
@@ -259,6 +246,9 @@
                 {
                     name: "Northport-Waneta Rd/WA-25/US-2: USA-Canada Border to Leavenworth",
                     start: [49, -117.6253],
+                    waypoints: [
+                        [47.796, -118.3285]
+                    ],
                     end: [47.5961, -120.6615],
                     color: '#d6983a'
                 },
@@ -341,6 +331,29 @@
                     start: [34.1629, -118.4721],
                     end: [34.0556, -117.1826],
                     color: '#15a5d1'
+                },
+                {
+                    name: "CA-99: Sacramento to Manteca",
+                    start: [38.5816, -121.4944],
+                    end: [37.7974, -121.2165],
+                    color: '#579934'
+                },
+                {
+                    name: "US-26/OR-6: Portland to Tillamook",
+                    start: [45.5210, -122.6807],
+                    end: [45.4577, -123.8433],
+                    color: '#15a5d1'
+                },
+                {
+                    name: "US-26/OR-35/I-84/WA-14: Tamanawas Falls Day Trip",
+                    start: [45.5210, -122.6807],
+                    waypoints: [
+                        [45.2837, -121.709],
+                        [45.6642, -121.8966],
+                        [45.5709, -122.3092]
+                    ],
+                    end: [45.5210, -122.6807],
+                    color: '#e31ebb'
                 }
 
             ];
@@ -397,34 +410,119 @@
 
             const myStops = [];
 
+            // HOTELS
             const hotelIcon = L.icon({
                 iconUrl: 'hotel_icon.jpeg', // The name of your image file
                 iconSize: [24, 24],    // Width and height in pixels
-                iconAnchor: [16, 32],  // The point of the icon that anchors to the map coordinates
-                popupAnchor: [0, -32]  // Where the popup bubble should open
+                iconAnchor: [12, 12],  // The point of the icon that anchors to the map coordinates
+                popupAnchor: [0, -16]  // Where the popup bubble should open
             });
 
-            // 2. Place the marker on the map using coordinates [Latitude, Longitude]
             const vancouverHotel = L.marker([49.2858, -123.1238], {icon: hotelIcon})
                 .addTo(map)
                 .bindPopup("Hyatt Vancouver Downtown Alberni");
-
             myStops.push(vancouverHotel)
 
+            const banffHotel = L.marker([51.1642, -115.5619], {icon: hotelIcon})
+                .addTo(map)
+                .bindPopup("Fairmont Banff Springs");
+            myStops.push(banffHotel)
 
+            const jasperHotel = L.marker([52.887, -118.0573], {icon: hotelIcon})
+                .addTo(map)
+                .bindPopup("Fairmont Jasper Park Lodge")
+            myStops.push(jasperHotel)
+
+            // FOOD
             const foodIcon = L.icon({
                 iconUrl: 'food_icon.jpg', // The name of your image file
                 iconSize: [24, 24],    // Width and height in pixels
-                iconAnchor: [16, 32],  // The point of the icon that anchors to the map coordinates
-                popupAnchor: [0, -32]  // Where the popup bubble should open
+                iconAnchor: [12, 12],  // The point of the icon that anchors to the map coordinates
+                popupAnchor: [0, -16]  // Where the popup bubble should open
             });
 
-            // 2. Place the marker on the map using coordinates [Latitude, Longitude]
             const tinTin = L.marker([49.1866, -123.1355], {icon: foodIcon})
                 .addTo(map)
                 .bindPopup("Tin Tin Seafood Harbour");
-
             myStops.push(tinTin)
+
+            const akbarjoojeh = L.marker([49.3261, -123.0726], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Akbarjoojeh 19th | اکبرجوجه");
+            myStops.push(akbarjoojeh)
+
+            const pureStreetFood = L.marker([51.0402, -114.0663], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Pure Street Food");
+            myStops.push(pureStreetFood)
+
+            const yume = L.marker([34.448, -119.2447], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Yume Japanese Burger Cafe");
+            myStops.push(yume)
+
+            const weiWei = L.marker([45.4682, -122.6533], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Wei Wei - A Taste of Taiwan")
+            myStops.push(weiWei)
+
+            const fanTang = L.marker([47.666, -122.1979], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Fan Tang Asian Cafe")
+            myStops.push(fanTang)
+
+            const tcTaqueria = L.marker([38.8676, -121.9549], {icon: foodIcon})
+                .addTo(map)
+                .bindPopup("Tres Cazueles Taqueria")
+            myStops.push(tcTaqueria)
+
+            // HIKES
+            const hikeIcon = L.icon({
+                iconUrl: 'hike_icon.jpg', // The name of your image file
+                iconSize: [24, 24],    // Width and height in pixels
+                iconAnchor: [12, 12],  // The point of the icon that anchors to the map coordinates
+                popupAnchor: [0, -16]  // Where the popup bubble should open
+            });
+
+            const valleyFiveLakes = L.marker([52.8084, -118.0233], {icon: hikeIcon})
+                .addTo(map)
+                .bindPopup("Valley of the Five Lakes");
+            myStops.push(valleyFiveLakes)
+
+            const dogMountain = L.marker([49.367, -122.9484], {icon: hikeIcon})
+                .addTo(map)
+                .bindPopup("Dog Mountain Trail");
+            myStops.push(dogMountain)
+
+            const cryptLake = L.marker([49.0311, -113.8943], {icon: hikeIcon})
+                .addTo(map)
+                .bindPopup("Crypt Lake");
+            myStops.push(cryptLake)
+
+            const jCanyon = L.marker([51.2452, -115.8406], {icon: hikeIcon})
+                .addTo(map)
+                .bindPopup("Johnston Canyon");
+            myStops.push(jCanyon)
+
+            // POIS
+            const poiIcon = L.icon({
+            iconUrl: 'poi_icon.jpg', // The name of your image file
+                iconSize: [24, 24],    // Width and height in pixels
+                iconAnchor: [12, 12],  // The point of the icon that anchors to the map coordinates
+                popupAnchor: [0, -16]  // Where the popup bubble should open
+            });
+
+            const athGlacier = L.marker([52.2127, -117.2326], {icon: poiIcon})
+                .addTo(map)
+                .bindPopup("Athabasca Glacier");
+            myStops.push(athGlacier)
+
+            const lakeLouise = L.marker([51.4165, -116.2714], {icon: poiIcon})
+                .addTo(map)
+                .bindPopup("Lake Louise");
+            myStops.push(lakeLouise)
+
+
 
             // 5. Listen for the user zooming the map
             map.on('zoomend', function() {
@@ -433,7 +531,7 @@
                 
                 // Calculate a new size. This formula makes it smaller when zoomed out, larger when zoomed in.
                 // Math.max ensures the icon never gets smaller than 12 pixels so it doesn't disappear.
-                const newSize = Math.max(15, currentZoom * 2); 
+                const newSize = Math.max(15, currentZoom * 3.2); 
                 
                 // Loop through every marker in your list and apply the new size
                 myStops.forEach(marker => {
@@ -444,8 +542,8 @@
                     const scaledIcon = L.icon({
                         iconUrl: currentIconUrl,
                         iconSize: [newSize, newSize],
-                        iconAnchor: [newSize / 2, newSize],     // Keeps the bottom point anchored properly
-                        popupAnchor: [0, -newSize]              // Keeps the popup above the pin
+                        iconAnchor: [newSize / 2, newSize / 2],     // Keeps the bottom point anchored properly
+                        popupAnchor: [0, -newSize / 2]              // Keeps the popup above the pin
                     });
                     
                     // Apply the new icon to the marker
